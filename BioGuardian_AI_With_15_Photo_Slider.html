@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#123d32">
+<title>BioGuardian AI | Explore & Protect Nature</title>
+<style>
+:root{--green:#176b4b;--deep:#123d32;--mint:#e7f6ed;--ink:#1c3029;--muted:#64756d;--paper:#f5f8f5;--white:#fff;--gold:#f3b64b;--purple:#7456cf}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif}button,input{font:inherit}a{text-decoration:none;color:inherit}
+header{position:sticky;top:0;z-index:10;background:#ffffffed;backdrop-filter:blur(12px);border-bottom:1px solid #dce8df}
+.nav{max-width:1180px;margin:auto;padding:13px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-size:21px;font-weight:900;color:var(--deep);display:flex;align-items:center;gap:9px}.logo{width:39px;height:39px;border-radius:13px;background:linear-gradient(135deg,#1a9a66,#7456cf);display:grid;place-items:center;color:white}
+nav{display:flex;gap:22px;color:#52665b;font-weight:700;font-size:14px}nav a:hover{color:var(--green)}
+.menu{display:none;border:0;background:var(--mint);padding:10px 13px;border-radius:10px;font-size:20px}
+.hero{max-width:1180px;margin:22px auto 0;min-height:430px;border-radius:27px;overflow:hidden;background:linear-gradient(90deg,#092d24ed,#092d2480),url('https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=1800&q=85') center/cover;display:flex;align-items:center;padding:55px;color:white}
+.hero-content{max-width:650px}.tag{display:inline-block;background:#ffffff20;border:1px solid #ffffff55;border-radius:30px;padding:8px 13px;font-size:12px;font-weight:800;letter-spacing:1px}
+h1{font-size:clamp(40px,6vw,68px);line-height:1.02;margin:19px 0}.hero p{font-size:17px;line-height:1.7;color:#e5f3e9;max-width:590px}
+.btn{border:0;border-radius:30px;padding:13px 19px;background:linear-gradient(110deg,#168a59,#7456cf);color:white;font-weight:800;cursor:pointer}.btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.hero .btn{margin-top:12px}.wrap{max-width:1180px;margin:auto;padding:65px 22px 0}
+.heading{text-align:center;max-width:720px;margin:0 auto 30px}.eyebrow{font-size:12px;letter-spacing:2px;color:var(--green);font-weight:900;text-transform:uppercase}.heading h2{font-size:clamp(29px,4vw,42px);margin:10px 0;color:var(--deep)}.heading p{color:var(--muted);line-height:1.7;margin:0}
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:20px}.quick div{background:white;padding:17px;border-radius:16px;border:1px solid #e1eae3;font-weight:800}.quick span{font-size:23px;margin-right:8px}
+.toolbar{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:0 0 25px}.filter{border:1px solid #d5e3d9;background:white;color:#365347;border-radius:25px;padding:10px 17px;cursor:pointer;font-weight:750}.filter.active,.filter:hover{background:var(--deep);color:white;border-color:var(--deep)}
+.search{display:block;width:min(440px,100%);margin:0 auto 24px;padding:13px 16px;border:1px solid #d5e3d9;border-radius:13px;background:white;outline-color:var(--green)}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:17px}
+.card{background:white;border:1px solid #e1eae3;border-radius:19px;overflow:hidden;box-shadow:0 7px 22px #153c2810;cursor:pointer;transition:.2s}.card:hover{transform:translateY(-5px);box-shadow:0 14px 30px #153c2820}
+.card-art{height:155px;display:grid;place-items:center;background:linear-gradient(135deg,#e4f4e8,#e9e5fa);font-size:76px}.card-body{padding:17px}.card h3{margin:0 0 7px;color:var(--deep);font-size:18px}.card p{margin:0;color:var(--muted);font-size:13px;line-height:1.55;min-height:40px}.more{display:inline-block;margin-top:13px;color:var(--green);font-size:13px;font-weight:900}
+.note{background:#fff8e9;border:1px solid #f4e2b8;border-radius:16px;padding:17px;margin-top:22px;color:#725522;line-height:1.6;font-size:13px}
+.band{margin-top:65px;background:linear-gradient(110deg,#153f32,#345e49 60%,#51418b);border-radius:24px;padding:35px;color:white;display:flex;justify-content:space-between;align-items:center;gap:20px}.band h2{margin:0 0 8px;font-size:29px}.band p{margin:0;color:#e0eee4;line-height:1.6}
+footer{margin-top:70px;background:#102e26;color:white;padding:35px 22px;text-align:center}footer p{color:#c6d8cd;font-size:13px}
+.backdrop{display:none;position:fixed;inset:0;background:#071b15b8;z-index:30;padding:18px;align-items:center;justify-content:center}.backdrop.open{display:flex}
+.modal{width:min(720px,100%);max-height:90vh;overflow:auto;background:white;border-radius:23px;padding:26px;box-shadow:0 25px 80px #0005}
+.modal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:15px}.modal h2{margin:0;color:var(--deep);font-size:28px}.close{border:0;border-radius:50%;width:38px;height:38px;background:#edf4ef;font-size:22px;cursor:pointer}
+.modal-emoji{font-size:70px;background:var(--mint);border-radius:18px;padding:14px;text-align:center;margin:17px 0}
+.details{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.detail{background:#f4f8f5;border-radius:13px;padding:14px}.detail strong{display:block;color:var(--green);font-size:12px;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px}.detail p{margin:0;color:#53645b;line-height:1.55;font-size:14px}
+
+/* Automatic 15-photo nature slider */
+.photo-section{max-width:1180px;margin:48px auto 0;padding:0 22px}
+.photo-slider{position:relative;overflow:hidden;border-radius:24px;background:#102e26;box-shadow:0 14px 35px #153c2820;isolation:isolate}
+.photo-track{position:relative;height:clamp(250px,43vw,490px)}
+.photo-slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .8s ease;}
+.photo-slide.active{opacity:1;visibility:visible}
+.photo-slide img{width:100%;height:100%;display:block;object-fit:cover}
+.photo-slide:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#071d17b8 0%,#071d1740 55%,transparent 100%);pointer-events:none}
+.photo-caption{position:absolute;z-index:2;left:clamp(20px,5vw,55px);bottom:clamp(55px,8vw,75px);max-width:540px;color:#fff;text-shadow:0 2px 14px #0008}
+.photo-caption small{display:inline-block;background:#ffffff24;border:1px solid #ffffff70;border-radius:30px;padding:7px 12px;letter-spacing:1.3px;font-weight:800;font-size:11px}
+.photo-caption h3{font-size:clamp(25px,4.5vw,43px);margin:12px 0 6px}
+.photo-caption p{font-size:15px;line-height:1.5;margin:0;color:#eff8f1}
+.photo-arrow{position:absolute;z-index:4;top:50%;transform:translateY(-50%);width:44px;height:44px;border:1px solid #ffffff8a;border-radius:50%;background:#092d248c;color:white;font-size:25px;cursor:pointer;display:grid;place-items:center;backdrop-filter:blur(5px)}
+.photo-arrow:hover{background:#168a59}.photo-arrow.prev{left:15px}.photo-arrow.next{right:15px}
+.photo-dots{position:absolute;z-index:4;bottom:19px;left:50%;transform:translateX(-50%);display:flex;gap:8px;align-items:center;justify-content:center;max-width:80%;flex-wrap:wrap}
+.photo-dot{width:8px;height:8px;border:0;border-radius:20px;padding:0;background:#ffffff9c;cursor:pointer;transition:.25s}
+.photo-dot.active{width:25px;background:#fff}
+.photo-count{position:absolute;z-index:4;right:18px;bottom:17px;color:white;font-size:12px;font-weight:800;background:#092d248c;padding:7px 10px;border-radius:20px}
+@media(max-width:600px){.photo-section{padding:0 15px;margin-top:35px}.photo-slider{border-radius:18px}.photo-track{height:300px}.photo-caption{left:20px;right:18px;bottom:60px}.photo-caption p{font-size:13px}.photo-arrow{width:36px;height:36px;font-size:20px}.photo-arrow.prev{left:9px}.photo-arrow.next{right:9px}.photo-dots{gap:6px;bottom:14px;max-width:72%}.photo-dot{width:6px;height:6px}.photo-dot.active{width:19px}.photo-count{right:10px;bottom:10px;font-size:10px}}
+@media(prefers-reduced-motion:reduce){.photo-slide{transition:none}}
+
+@media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}.hero{margin:14px 14px 0}.quick{grid-template-columns:1fr}}
+@media(max-width:600px){nav{display:none}.menu{display:block}.nav{padding:11px 15px}.hero{min-height:430px;padding:28px;border-radius:19px}.hero p{font-size:15px}.wrap{padding:52px 15px 0}.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.card-art{height:115px;font-size:57px}.card-body{padding:12px}.card h3{font-size:15px}.card p{font-size:12px}.band{padding:25px;display:block}.band .btn{margin-top:17px}.details{grid-template-columns:1fr}.modal{padding:20px}}
+</style>
+</head>
+<body>
+<header><div class="nav"><a class="brand" href="#"><span class="logo">🌿</span>BioGuardian AI</a><nav><a href="#home">Home</a><a href="#animals">Animals</a><a href="#plants">Plants</a><a href="#care">Environment</a></nav><button class="menu" onclick="document.getElementById('mobileNav').hidden=!document.getElementById('mobileNav').hidden">☰</button></div><nav id="mobileNav" hidden style="padding:0 20px 15px;flex-wrap:wrap"><a href="#home">Home</a><a href="#animals">Animals</a><a href="#plants">Plants</a><a href="#care">Environment</a></nav></header>
+<main id="home">
+<section class="hero"><div class="hero-content"><span class="tag">DISCOVER · LEARN · PROTECT</span><h1>Every living thing has a story.</h1><p>Explore amazing animals and plants. Click any card to discover where it lives, what it eats, its role in nature, and why we should protect it.</p><a class="btn" href="#animals">Explore the Nature World →</a></div></section>
+
+<section class="photo-section" id="natureGallery" aria-label="Nature photo gallery">
+  <div class="heading"><div class="eyebrow">Nature in pictures</div><h2>Explore the beauty of our planet</h2><p>Enjoy these nature scenes and discover why every habitat deserves our care.</p></div>
+  <div class="photo-slider" id="photoSlider">
+    <div class="photo-track" aria-live="off">
+      <figure class="photo-slide active"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1800&q=85" alt="Sunlight shining through a green forest" fetchpriority="high"><figcaption class="photo-caption"><small>01 / FORESTS</small><h3>Where life finds a home</h3><p>Healthy forests shelter countless species and keep ecosystems thriving.</p></figcaption></figure>
+      <figure class="photo-slide"><img src="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=1800&q=85" alt="Wild deer in a natural woodland habitat" loading="lazy"><figcaption class="photo-caption"><small>02 / WILDLIFE</small><h3>Wildlife belongs in the wild</h3><p>Every animal plays a part in the balance of nature.</p></figcaption></figure>
+      <figure class="photo-slide"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=85" alt="Wide natural landscape beneath an open sky" loading="lazy"><figcaption class="photo-caption"><small>03 / LANDSCAPES</small><h3>One planet, many wonders</h3><p>Protecting natural places helps life flourish for generations.</p></figcaption></figure>
+      <figure class="photo-slide"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1800&q=85" alt="Mountain lake surrounded by green hills" loading="lazy"><figcaption class="photo-caption"><small>04 / FRESHWATER</small><h3>Keep our waters alive</h3><p>Clean lakes and rivers support plants, animals and people.</p></figcaption></figure>
+      <figure class="photo-slide"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1800&q=85" alt="Mountain range reflected in a clear lake" loading="lazy"><figcaption class="photo-caption"><small>05 / MOUNTAINS</small><h3>Guard the mountain habitats</h3><p>Mountain ecosystems are home to remarkable and unique life.</p></figcaption></figure>
+      <figure class="photo-slide"><img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1800&q=85" alt="Tall trees in a peaceful green forest" loading="lazy"><figcaption class="photo-caption"><small>06 / GREEN PLANET</small><h3>Let forests grow</h3><p>Trees provide shelter, store carbon and support biodiversity.</p></figcaption></figure>
+      <figure class="photo-slide"><img src="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1800&q=85" alt="Sunbeams filtering through dense woodland" loading="lazy"><figcaption class="photo-caption"><small>07 / FOREST LIFE</small><h3>A world beneath the canopy</h3><p>Forests connect living things above and below the ground.</p></figcaption></figure>
+      <figure class="photo-slide"><img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1800&q=85" alt="Beautiful open countryside and distant hills" loading="lazy"><figcaption class="photo-caption"><small>08 / COUNTRYSIDE</small><h3>Nature is all around us</h3><p>Even small green spaces can make a difference for wildlife.</p></figcaption></figure>
+      <figure class="photo-slide"><img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1800&q=85" alt="Sunlit mountain landscape and green valley" loading="lazy"><figcaption class="photo-caption"><small>09 / WILDERNESS</small><h3>Keep wild places wild</h3><p>Respect habitats and give wildlife room to thrive.</p></figcaption></figure>
+      <figure class="photo-slide"><img src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=1800&q=85" alt="Golden sunrise over a peaceful natural landscape" loading="lazy"><figcaption class="photo-caption"><small>10 / SUNRISE</small><h3>A fresh start for nature</h3><p>Choose simple habits that reduce waste and protect resources.</p></figcaption></figure>
+      <figure class="photo-slide"><img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=1800&q=85" alt="Green tree standing in a natural meadow" loading="lazy"><figcaption class="photo-caption"><small>11 / TREES</small><h3>Every tree matters</h3><p>Plant suitable local trees and care for them as they grow.</p></figcaption></figure>
+      <figure class="photo-slide"><img src="https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=1800&q=85" alt="Fresh green leaves in soft natural light" loading="lazy"><figcaption class="photo-caption"><small>12 / PLANT LIFE</small><h3>Small leaves, big impact</h3><p>Plants provide food, oxygen and habitats for other living things.</p></figcaption></figure>
+      <figure class="photo-slide"><img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1800&q=85" alt="Young green plants growing in sunlight" loading="lazy"><figcaption class="photo-caption"><small>13 / GROWING</small><h3>Help green spaces flourish</h3><p>Care for plants and make room for pollinators.</p></figcaption></figure>
+      <figure class="photo-slide"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1800&q=85" alt="Green fields and rolling countryside" loading="lazy"><figcaption class="photo-caption"><small>14 / EARTH</small><h3>Care for the land</h3><p>Healthy soil and habitats are foundations of biodiversity.</p></figcaption></figure>
+      <figure class="photo-slide"><img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1800&q=85" alt="Ocean waves meeting a clean shoreline" loading="lazy"><figcaption class="photo-caption"><small>15 / OCEANS</small><h3>Protect our blue planet</h3><p>Reduce plastic waste and help keep oceans and coasts clean.</p></figcaption></figure>
+    </div>
+    <button class="photo-arrow prev" type="button" aria-label="Previous photo">‹</button>
+    <button class="photo-arrow next" type="button" aria-label="Next photo">›</button>
+    <div class="photo-dots" aria-label="Choose a photo"></div>
+    <div class="photo-count" aria-live="polite">01 / 15</div>
+  </div>
+</section>
+
+<div class="wrap" style="padding-top:22px"><div class="quick"><div><span>🐾</span>Discover wildlife</div><div><span>🌱</span>Learn about plants</div><div><span>🌍</span>Protect our planet</div></div></div>
+<section class="wrap" id="animals"><div class="heading"><div class="eyebrow">Wildlife explorer</div><h2>Meet the animal kingdom</h2><p>Select an animal to open its information card. Learn about its habitat, food, behaviour, role in nature, and conservation.</p></div>
+<input class="search" id="animalSearch" placeholder="Search an animal...">
+<div class="toolbar" id="animalFilters"><button class="filter active" data-filter="All">All animals</button><button class="filter" data-filter="Mammal">Mammals</button><button class="filter" data-filter="Bird">Birds</button><button class="filter" data-filter="Reptile">Reptiles</button></div>
+<div class="cards" id="animalCards"></div>
+</section>
+<section class="wrap" id="plants"><div class="heading"><div class="eyebrow">Plant explorer</div><h2>Plants make life possible</h2><p>Click a plant to learn about its features, uses, growing conditions, and importance to the environment.</p></div><div class="cards" id="plantCards"></div></section>
+<section class="wrap" id="care"><div class="heading"><div class="eyebrow">Take action</div><h2>Small actions protect nature</h2><p>Simple daily habits can help protect plants, animals, water, and natural habitats.</p></div><div class="cards">
+<article class="card"><div class="card-art">💧</div><div class="card-body"><h3>Save water</h3><p>Use water carefully and keep rivers and ponds free from waste.</p></div></article>
+<article class="card"><div class="card-art">♻️</div><div class="card-body"><h3>Reduce waste</h3><p>Reuse items and sort waste wherever suitable facilities exist.</p></div></article>
+<article class="card"><div class="card-art">🌳</div><div class="card-body"><h3>Protect habitats</h3><p>Care for trees and green spaces where wildlife can live.</p></div></article>
+<article class="card"><div class="card-art">🦋</div><div class="card-body"><h3>Respect wildlife</h3><p>Observe wild animals from a distance and never disturb them.</p></div></article>
+</div><div class="note"><strong>Learning note:</strong> This website is an educational guide. Animal and plant information is simplified for learning; local species and conservation rules can vary by region.</div>
+<div class="band"><div><h2>Curious about nature?</h2><p>Explore the cards above and discover how every species supports the natural world.</p></div><a class="btn" href="#animals">Explore animals →</a></div></section>
+</main>
+<footer><strong>🌿 BioGuardian AI</strong><p>Learn about nature. Understand life. Protect our shared planet.</p>© 2026 BioGuardian AI</footer>
+<div class="backdrop" id="backdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal"><div class="modal-head"><div><div class="eyebrow">Nature knowledge card</div><h2 id="modalTitle"></h2></div><button class="close" id="closeModal" aria-label="Close">×</button></div><div id="modalBody"></div></div></div>
+<script>
+const animals=[
+{name:"Bengal Tiger",emoji:"🐅",type:"Mammal",habitat:"Forests, grasslands and mangrove habitats in parts of South Asia.",food:"A carnivore. It mainly hunts deer and wild pigs.",role:"As a top predator, it helps keep prey populations and ecosystems balanced.",features:"A powerful striped cat with excellent hearing, strong muscles and a mostly solitary lifestyle.",protect:"Protect forests, prevent illegal wildlife trade and keep habitats connected."},
+{name:"African Lion",emoji:"🦁",type:"Mammal",habitat:"Mainly savannas, grasslands and open woodland in parts of Africa.",food:"A carnivore that hunts animals such as antelope and zebra.",role:"It helps influence herbivore populations and is an important part of the food web.",features:"A social big cat that lives in groups called prides.",protect:"Protect natural grasslands, prey species and safe wildlife areas."},
+{name:"Asian Elephant",emoji:"🐘",type:"Mammal",habitat:"Forests and grassland mosaics in parts of South and Southeast Asia.",food:"A herbivore. It eats grasses, leaves, bark, roots and fruit.",role:"It can spread seeds and help shape forest habitats.",features:"A very large mammal with a trunk used for smelling, drinking and picking up food.",protect:"Protect migration routes and reduce conflict between people and elephants."},
+{name:"Red Panda",emoji:"🦊",type:"Mammal",habitat:"Cool temperate forests in the eastern Himalayas and nearby regions.",food:"Mostly bamboo, with fruit, insects and other foods also eaten.",role:"It is part of the mountain forest food web and an indicator of healthy habitat.",features:"A small tree-dwelling mammal with reddish fur and a long bushy tail.",protect:"Protect mountain forests and prevent habitat loss."},
+{name:"Giraffe",emoji:"🦒",type:"Mammal",habitat:"Savannas and open woodlands in parts of Africa.",food:"A herbivore that mainly browses leaves, especially from trees.",role:"It can influence plant growth and helps move nutrients through ecosystems.",features:"The tallest living land animal, with a long neck and spotted coat.",protect:"Conserve savanna habitats and support responsible wildlife protection."},
+{name:"Dolphin",emoji:"🐬",type:"Mammal",habitat:"Oceans and some river systems, depending on the species.",food:"Fish, squid and other aquatic animals.",role:"Dolphins are part of aquatic food webs and can indicate ecosystem conditions.",features:"An intelligent, social aquatic mammal that uses sound to communicate and navigate.",protect:"Reduce water pollution, avoid disturbing animals and protect aquatic habitats."},
+{name:"Peacock",emoji:"🦚",type:"Bird",habitat:"Forests, scrublands and cultivated landscapes in the Indian subcontinent.",food:"Seeds, fruits, insects and small animals.",role:"It can help control some insects and disperse seeds.",features:"The Indian peafowl is known for the male's colourful display feathers.",protect:"Protect natural vegetation and avoid disturbing nests or wild birds."},
+{name:"Eagle",emoji:"🦅",type:"Bird",habitat:"A range of habitats including mountains, forests, wetlands and open country.",food:"Varies by species; many eat fish, birds or small mammals.",role:"As a predator, it helps regulate populations in food webs.",features:"A bird of prey with keen eyesight, strong feet and a hooked beak.",protect:"Protect nesting areas and reduce poisoning and habitat disturbance."},
+{name:"Owl",emoji:"🦉",type:"Bird",habitat:"Forests, farms, grasslands and sometimes towns, depending on species.",food:"Often rodents and insects; some species eat fish or other animals.",role:"Many owls help control rodent populations.",features:"Many species are active at night and have excellent hearing.",protect:"Keep nesting places safe and avoid using harmful poisons against rodents."},
+{name:"Green Sea Turtle",emoji:"🐢",type:"Reptile",habitat:"Tropical and subtropical oceans; females return to sandy beaches to nest.",food:"Adults mostly eat seagrasses and algae.",role:"Grazing helps maintain healthy seagrass beds.",features:"A marine turtle with flippers adapted for swimming.",protect:"Keep beaches clean, reduce plastic pollution and protect nesting sites."},
+{name:"Crocodile",emoji:"🐊",type:"Reptile",habitat:"Rivers, lakes, wetlands and estuaries in tropical regions.",food:"Fish and other animals; diet changes with size and species.",role:"It is a top predator and helps maintain wetland food-web balance.",features:"A semi-aquatic reptile with powerful jaws and a strong tail.",protect:"Protect wetlands and observe crocodiles only from a safe distance."},
+{name:"King Cobra",emoji:"🐍",type:"Reptile",habitat:"Forests and other natural habitats in parts of South and Southeast Asia.",food:"Mainly other snakes.",role:"It is a predator that forms part of the natural food web.",features:"A large venomous snake that can raise the front part of its body when threatened.",protect:"Protect forests and never approach or try to handle wild snakes."}
+];
+const plants=[
+{name:"Neem",emoji:"🌳",habitat:"A hardy tree found in many warm regions, including India.",use:"Leaves, seeds and other parts have traditional uses; products should be used with proper guidance.",role:"Provides shade, flowers for insects and shelter for birds.",grow:"Grows best in a warm climate with sunlight and well-drained soil.",protect:"Plant suitable local trees and protect young saplings."},
+{name:"Banyan",emoji:"🌿",habitat:"A large tree native to the Indian subcontinent and grown in warm areas.",use:"Provides shade and is culturally important in many communities.",role:"Its wide canopy and branches provide food and shelter for many organisms.",grow:"Needs space, sunlight and room for its spreading roots and branches.",protect:"Preserve old trees and avoid damaging their roots."},
+{name:"Peepal",emoji:"🍃",habitat:"Native to the Indian subcontinent; grows in warm climates.",use:"Important in local traditions and valued as a shade tree.",role:"Flowers and fruits support insects and birds; the tree provides shelter.",grow:"Needs sunlight and enough space to develop.",protect:"Protect mature trees and grow saplings in suitable places."},
+{name:"Tulsi",emoji:"🌱",habitat:"A cultivated aromatic herb commonly grown in South Asia.",use:"Used in traditional practices and as an aromatic plant.",role:"Its flowers can attract bees and other pollinators.",grow:"Likes sunlight, well-drained soil and careful watering.",protect:"Grow responsibly and avoid excessive watering."},
+{name:"Sunflower",emoji:"🌻",habitat:"Grown in sunny fields and gardens in many regions.",use:"Seeds are used as food and for making cooking oil.",role:"Flowers provide nectar and pollen for visiting insects.",grow:"Needs plenty of sunlight and well-drained soil.",protect:"Avoid unnecessary pesticide use around flowering plants."},
+{name:"Lotus",emoji:"🪷",habitat:"Ponds and other shallow freshwater habitats.",use:"Different parts are used as food and the flower has cultural importance.",role:"Provides habitat and resources for organisms in freshwater ecosystems.",grow:"Needs still or slow-moving water and suitable muddy soil.",protect:"Keep ponds clean and protect freshwater habitats."},
+{name:"Mango Tree",emoji:"🥭",habitat:"A tropical tree widely cultivated in India and other warm regions.",use:"Produces mango fruit and provides shade.",role:"Flowers support pollinators and fruit can feed wildlife and people.",grow:"Needs warmth, sunlight and space to grow.",protect:"Care for old trees and plant locally suitable varieties."},
+{name:"Bamboo",emoji:"🎋",habitat:"Many species grow in tropical and subtropical regions, including India.",use:"Used for construction, crafts, furniture and other products.",role:"Bamboo stands provide cover and food for some wildlife.",grow:"Needs suitable soil and space; growth habits vary by species.",protect:"Choose suitable native or non-invasive species for planting."}
+];
+function makeCard(item,kind){const el=document.createElement('article');el.className='card';el.tabIndex=0;el.setAttribute('role','button');el.innerHTML=`<div class="card-art">${item.emoji}</div><div class="card-body"><h3>${item.name}</h3><p>${kind==='animal'?item.type+' · ':' '}${item.habitat}</p><span class="more">View full details →</span></div>`;const open=()=>showDetails(item,kind);el.addEventListener('click',open);el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}});return el}
+function renderAnimals(){const q=document.getElementById('animalSearch').value.toLowerCase();const active=document.querySelector('#animalFilters .active').dataset.filter;const root=document.getElementById('animalCards');root.innerHTML='';animals.filter(a=>(active==='All'||a.type===active)&&a.name.toLowerCase().includes(q)).forEach(a=>root.appendChild(makeCard(a,'animal')));if(!root.children.length)root.innerHTML='<p>No matching animals found.</p>'}
+function showDetails(item,kind){document.getElementById('modalTitle').textContent=item.emoji+' '+item.name;const fields=kind==='animal'?[['Animal group',item.type],['Habitat — where it lives',item.habitat],['Food — what it eats',item.food],['Role in nature — what it does',item.role],['Special features',item.features],['How to protect it',item.protect]]:[['Habitat — where it grows',item.habitat],['Uses',item.use],['Role in nature',item.role],['Growing conditions',item.grow],['How to protect it',item.protect]];document.getElementById('modalBody').innerHTML=`<div class="modal-emoji">${item.emoji}</div><div class="details">${fields.map(([t,v])=>`<div class="detail"><strong>${t}</strong><p>${v}</p></div>`).join('')}</div>`;document.getElementById('backdrop').classList.add('open')}
+document.getElementById('animalSearch').addEventListener('input',renderAnimals);
+document.querySelectorAll('#animalFilters .filter').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#animalFilters .filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderAnimals()}));
+const plantRoot=document.getElementById('plantCards');plants.forEach(p=>plantRoot.appendChild(makeCard(p,'plant')));
+document.getElementById('closeModal').onclick=()=>document.getElementById('backdrop').classList.remove('open');
+document.getElementById('backdrop').addEventListener('click',e=>{if(e.target.id==='backdrop')e.currentTarget.classList.remove('open')});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('backdrop').classList.remove('open')});
+renderAnimals();
+
+// Automatic nature photo slider: 15 photos, advances every five seconds.
+(function(){
+  const slider=document.getElementById('photoSlider');
+  if(!slider)return;
+  const slides=Array.from(slider.querySelectorAll('.photo-slide'));
+  const dots=slider.querySelector('.photo-dots');
+  const count=slider.querySelector('.photo-count');
+  const previous=slider.querySelector('.photo-arrow.prev');
+  const next=slider.querySelector('.photo-arrow.next');
+  let current=0, timer=null;
+  slides.forEach((slide,index)=>{
+    const dot=document.createElement('button');
+    dot.type='button';dot.className='photo-dot'+(index===0?' active':'');
+    dot.setAttribute('aria-label','Show photo '+(index+1));
+    dot.addEventListener('click',()=>{show(index);restart();});
+    dots.appendChild(dot);
+  });
+  const allDots=Array.from(dots.children);
+  function show(index){
+    current=(index+slides.length)%slides.length;
+    slides.forEach((slide,i)=>{slide.classList.toggle('active',i===current);slide.setAttribute('aria-hidden',i===current?'false':'true');});
+    allDots.forEach((dot,i)=>{dot.classList.toggle('active',i===current);dot.setAttribute('aria-current',i===current?'true':'false');});
+    count.textContent=String(current+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');
+  }
+  function stop(){if(timer){clearInterval(timer);timer=null;}}
+  function start(){stop();timer=setInterval(()=>show(current+1),5000);}
+  function restart(){start();}
+  previous.addEventListener('click',()=>{show(current-1);restart();});
+  next.addEventListener('click',()=>{show(current+1);restart();});
+  slider.addEventListener('mouseenter',stop);
+  slider.addEventListener('mouseleave',start);
+  slider.addEventListener('focusin',stop);
+  slider.addEventListener('focusout',event=>{if(!slider.contains(event.relatedTarget))start();});
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();else start();});
+  show(0);start();
+})();
+
+</script>
+</body>
+</html>
